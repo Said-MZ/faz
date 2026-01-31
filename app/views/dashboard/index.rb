@@ -4,7 +4,7 @@ class Views::Dashboard::Index < Views::Base
   end
 
   def view_template
-    div(class: "grid grid-cols-3 gap-6") do
+    div(class: "grid grid-cols-3 gap-6 place-items-center") do
       @names.each do |name|
         dashboardCard(name)
       end

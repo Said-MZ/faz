@@ -26,7 +26,26 @@
 </head>
 
 <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <%= render RubyUI::Navbar.new(title: "Hello") do %>
+    <%= render RubyUI::NavbarLogo.new(App: "Faz") do %>
+    <h1 class="text-xl font-bold">
+        Faz
+    </h1>
+    <% end %>
+    <%= render RubyUI::NavbarLinks.new(title: "Hello") do%>
+    <%= render RubyUI::NavbarLink.new(href: "#", title: "Home") do %>
+    Home
+    <% end %>
+    <%= render RubyUI::NavbarLink.new(href: "#", title: "About") do %>
+    About
+    <% end %>
+    <%= render RubyUI::NavbarLink.new(href: "#", title: "Contact") do %>
+    Contact
+    <% end %>
+    <% end %>
+    <% end %>
+
+    <main class="pt-24 px-4 mx-auto">
         <%= yield %>
     </main>
 </body>
