@@ -43,6 +43,9 @@ gem "image_processing", "~> 1.2"
 gem "phlex-rails", "~> 2.4"
 gem "phlex-icons", "~> 2.54"
 
+gem "ruby_ui", "~> 1.0", group: :development, require: false
+
+gem "tailwind_merge", "~> 1.3"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
