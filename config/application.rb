@@ -16,6 +16,9 @@ module Faz
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
+    # Add the builds directory to Propshaft's asset load path for Tailwind CSS
+    config.assets.paths << Rails.root.join("app/assets/builds")
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
