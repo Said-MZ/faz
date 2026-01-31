@@ -1,18 +1,22 @@
 class Views::Dashboard::Index < Views::Base
-  def initialize(name)
-    @name = name
+  def initialize(names)
+    @names = %w[Sai'd John Jane]
   end
 
   def view_template
-    render dashboardCard
+    div(class: "grid grid-cols-3 gap-6") do
+      @names.each do |name|
+        dashboardCard(name)
+      end
+    end
   end
 
   private
 
-  def dashboardCard
+  def dashboardCard(name)
     render RubyUI::Card.new(class: "w-96") do
       render RubyUI::CardHeader.new do
-        render RubyUI::CardTitle.new { "Introducing RubyUI" }
+        render RubyUI::CardTitle.new { "Welcome #{name}" }
         render RubyUI::CardDescription.new { "Kickstart your project today!" }
       end
       render RubyUI::CardContent.new do
