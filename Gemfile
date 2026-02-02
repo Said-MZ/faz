@@ -39,7 +39,7 @@ gem "thruster", require: false
 gem "image_processing", "~> 1.2"
 
 gem "phlex-rails", "~> 2.4"
-gem "phlex-icons", "~> 2.54"
+gem "phlex-icons", "~> 2.55"
 
 gem "tailwind_merge", "~> 1.3"
 
