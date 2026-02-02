@@ -4,8 +4,6 @@ source "https://rubygems.org"
 gem "rails", "~> 8.1.2"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", ">= 2.1"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
@@ -43,8 +41,6 @@ gem "image_processing", "~> 1.2"
 gem "phlex-rails", "~> 2.4"
 gem "phlex-icons", "~> 2.54"
 
-gem "ruby_ui", "~> 1.0", group: :development, require: false
-
 gem "tailwind_merge", "~> 1.3"
 
 gem "pg"
@@ -72,6 +68,7 @@ group :development do
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
   gem "rubocop", "~> 1.84"
+  gem "ruby_ui", "~> 1.0", require: false
 end
 
 group :test do
