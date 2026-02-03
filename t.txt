@@ -1,0 +1,428 @@
+analysis:
+  baseBranch: a7f2787d93f93a967eff3ce1257b8a3e297c4532
+  compareBranch: HEAD
+  commits[12]{sha,shortSha,message,author,authorEmail,timestamp,date}:
+    208dd86a7682267acec6bbbcfa3d2074cba7448d,208dd86,Add PostgreSQL support and create Card model with migration,Said-MZ,saidzain897@gmail.com,"2026-01-31T19:31:32+03:00","2026-01-31T16:31:32.000Z"
+    de08ddda58cb52fbb37d038d457054adc5cfb986,de08ddd,Add RubyUI Navbar components and integrate into application layout,Said-MZ,saidzain897@gmail.com,"2026-01-31T15:49:10+03:00","2026-01-31T12:49:10.000Z"
+    2f8f33b9b18d5fecf54be682c18c411a358f343a,2f8f33b,Update RubyUI card attributes and enhance dashboard card rendering with dynamic names,Said-MZ,saidzain897@gmail.com,"2026-01-31T15:10:01+03:00","2026-01-31T12:10:01.000Z"
+    5b5c0bb847b918d76fdf119f03a27f5fd59dfd94,5b5c0bb,Refactor RubyUI card rendering to remove unnecessary namespace prefixes,Said-MZ,saidzain897@gmail.com,"2026-01-31T14:54:46+03:00","2026-01-31T11:54:46.000Z"
+    a3effe998df2ba52264a919561383b9dd1be18fe,a3effe9,Add Tailwind CSS integration and RubyUI card components with updated application layout,Said-MZ,saidzain897@gmail.com,"2026-01-31T14:53:51+03:00","2026-01-31T11:53:51.000Z"
+    3148ecfeb948b2913e356433625100fb2d04cab5,3148ecf,Add RubyUI integration and Tailwind CSS support with new components,Said-MZ,saidzain897@gmail.com,"2026-01-31T13:09:32+03:00","2026-01-31T10:09:32.000Z"
+    5df99548e59b1468c423c5d5782bec4c445738bf,5df9954,Add base components and views structure with initial dashboard controller,Said-MZ,saidzain897@gmail.com,"2026-01-31T13:08:30+03:00","2026-01-31T10:08:30.000Z"
+    39beb66b4093a3452aa81a1cf98e11f3b6fe2393,39beb66,Add RuboCop plugins and update configuration for RSpec and layout rules,Said-MZ,saidzain897@gmail.com,"2026-01-31T11:58:30+03:00","2026-01-31T08:58:30.000Z"
+    7f2b5ae47e7f5e9d3cf9675efbe58cf0f0f6dbd1,7f2b5ae,Update Ruby version format and add rubocop gem to Gemfile and Gemfile.lock,Said-MZ,saidzain897@gmail.com,"2026-01-31T11:58:26+03:00","2026-01-31T08:58:26.000Z"
+    ca6d9a6a6bf74164a1f017c0caae80424bb1104c,ca6d9a6,Fix formatting of gem entries in Gemfile,Said-MZ,saidzain897@gmail.com,"2026-01-31T11:41:27+03:00","2026-01-31T08:41:27.000Z"
+    e51d179cc7d151991bcb6fb8c37b02abd65286bb,e51d179,Add rspec-rails gem for testing framework support,Said-MZ,saidzain897@gmail.com,"2026-01-31T11:28:37+03:00","2026-01-31T08:28:37.000Z"
+    6afefd4708dc6a5bf995fb3f65948478f012fe95,6afefd4,Add phlex and rubocop gems to Gemfile and Gemfile.lock,Said-MZ,saidzain897@gmail.com,"2026-01-31T11:23:47+03:00","2026-01-31T08:23:47.000Z"
+  fileChanges[33]{path,status,oldPath,insertions,deletions}:
+    .gitignore,modified,null,3,0
+    .rubocop.yml,modified,null,11,5
+    .ruby-version,modified,null,1,1
+    Gemfile,modified,null,17,0
+    Gemfile.lock,modified,null,89,0
+    Procfile.dev,added,null,2,0
+    app/assets/builds/.keep,added,null,0,0
+    app/assets/tailwind/application.css,added,null,147,0
+    app/components/base.rb,added,null,13,0
+    app/components/ruby_ui/base.rb,added,null,22,0
+    app/components/ruby_ui/card/card.rb,added,null,17,0
+    app/components/ruby_ui/card/card_content.rb,added,null,17,0
+    app/components/ruby_ui/card/card_description.rb,added,null,17,0
+    app/components/ruby_ui/card/card_footer.rb,added,null,17,0
+    app/components/ruby_ui/card/card_header.rb,added,null,17,0
+    app/components/ruby_ui/card/card_title.rb,added,null,17,0
+    app/components/ruby_ui/navbar/navbar.rb,added,null,17,0
+    app/components/ruby_ui/navbar/navbar_link.rb,added,null,17,0
+    app/components/ruby_ui/navbar/navbar_links.rb,added,null,17,0
+    app/components/ruby_ui/navbar/navbar_logo.rb,added,null,17,0
+    app/controllers/dashboard_controller.rb,added,null,5,0
+    app/models/card.rb,added,null,2,0
+    app/views/base.rb,added,null,12,0
+    app/views/dashboard/index.rb,added,null,34,0
+    app/views/layouts/application.html.erb,modified,null,30,6
+    bin/dev,modified,null,16,2
+    config/application.rb,modified,null,3,0
+    config/database.yml,modified,null,9,19
+    config/initializers/phlex.rb,added,null,16,0
+    config/initializers/ruby_ui.rb,added,null,18,0
+    config/routes.rb,modified,null,1,11
+    db/migrate/20260131162104_create_cards.rb,added,null,9,0
+    db/schema.rb,added,null,22,0
+  diffHunks[45]:
+    - file: .gitignore
+      oldStart: 33
+      oldLines: 3
+      newStart: 33
+      newLines: 6
+      content: "@@ -33,3 +33,6 @@\n # Ignore key files for decrypting credentials and more.\n /config/*.key\n \n+\n+/app/assets/builds/*\n+!/app/assets/builds/.keep"
+      addedLines[3]: "",/app/assets/builds/*,!/app/assets/builds/.keep
+      removedLines[0]:
+    - file: .rubocop.yml
+      oldStart: 1
+      oldLines: 8
+      newStart: 1
+      newLines: 14
+      content: "@@ -1,8 +1,14 @@\n # Omakase Ruby styling for Rails\n inherit_gem: { rubocop-rails-omakase: rubocop.yml }\n+plugins:\n+  - rubocop-rspec\n+  - rubocop-rails\n \n-# Overwrite or add rules to create your own house style\n-#\n-# # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`\n-# Layout/SpaceInsideArrayLiteralBrackets:\n-#   Enabled: false\n+Layout/IndentationConsistency:\n+  Enabled: true\n+\n+Layout/IndentationWidth:\n+  Width: 2\n+\n+RSpec/AlignLeftLetBrace:\n+  Enabled: true"
+      addedLines[11]: "plugins:","  - rubocop-rspec","  - rubocop-rails","Layout/IndentationConsistency:","  Enabled: true","","Layout/IndentationWidth:","  Width: 2","","RSpec/AlignLeftLetBrace:","  Enabled: true"
+      removedLines[5]: # Overwrite or add rules to create your own house style,#,"# # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`","# Layout/SpaceInsideArrayLiteralBrackets:","#   Enabled: false"
+    - file: .ruby-version
+      oldStart: 1
+      oldLines: 1
+      newStart: 1
+      newLines: 1
+      content: "@@ -1 +1 @@\n-ruby-4.0.1\n+4.0.1"
+      addedLines[1]: 4.0.1
+      removedLines[1]: ruby-4.0.1
+    - file: Gemfile
+      oldStart: 40
+      oldLines: 6
+      newStart: 40
+      newLines: 15
+      content: "@@ -40,6 +40,15 @@ gem \"thruster\", require: false\n # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]\n gem \"image_processing\", \"~> 1.2\"\n \n+gem \"phlex-rails\", \"~> 2.4\"\n+gem \"phlex-icons\", \"~> 2.54\"\n+\n+gem \"ruby_ui\", \"~> 1.0\", group: :development, require: false\n+\n+gem \"tailwind_merge\", \"~> 1.3\"\n+\n+gem \"pg\"\n+\n group :development, :test do\n   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem\n   gem \"debug\", platforms: %i[ mri windows ], require: \"debug/prelude\""
+      addedLines[9]: "gem \"phlex-rails\", \"~> 2.4\"","gem \"phlex-icons\", \"~> 2.54\"","","gem \"ruby_ui\", \"~> 1.0\", group: :development, require: false","","gem \"tailwind_merge\", \"~> 1.3\"","","gem \"pg\"",""
+      removedLines[0]:
+    - file: Gemfile
+      oldStart: 52
+      oldLines: 11
+      newStart: 61
+      newLines: 17
+      content: "@@ -52,11 +61,17 @@ group :development, :test do\n \n   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]\n   gem \"rubocop-rails-omakase\", require: false\n+\n+  gem \"rspec-rails\", \"~> 8.0.0\"\n end\n \n group :development do\n   # Use console on exceptions pages [https://github.com/rails/web-console]\n   gem \"web-console\"\n+\n+  gem \"rubocop-rails\", require: false\n+  gem \"rubocop-rspec\", require: false\n+  gem \"rubocop\", \"~> 1.84\"\n end\n \n group :test do"
+      addedLines[6]: "","  gem \"rspec-rails\", \"~> 8.0.0\"","","  gem \"rubocop-rails\", require: false","  gem \"rubocop-rspec\", require: false","  gem \"rubocop\", \"~> 1.84\""
+      removedLines[0]:
+    - file: Gemfile
+      oldStart: 64
+      oldLines: 3
+      newStart: 79
+      newLines: 5
+      content: "@@ -64,3 +79,5 @@ group :test do\n   gem \"capybara\"\n   gem \"selenium-webdriver\"\n end\n+\n+gem \"tailwindcss-rails\", \"~> 4.4\""
+      addedLines[2]: "","gem \"tailwindcss-rails\", \"~> 4.4\""
+      removedLines[0]:
+    - file: Gemfile.lock
+      oldStart: 106
+      oldLines: 6
+      newStart: 106
+      newLines: 7
+      content: "@@ -106,6 +106,7 @@ GEM\n     debug (1.11.1)\n       irb (~> 1.10)\n       reline (>= 0.3.8)\n+    diff-lcs (1.6.2)\n     dotenv (3.2.0)\n     drb (2.2.3)\n     ed25519 (1.4.0)"
+      addedLines[1]: "    diff-lcs (1.6.2)"
+      removedLines[0]:
+    - file: Gemfile.lock
+      oldStart: 208
+      oldLines: 6
+      newStart: 209
+      newLines: 21
+      content: "@@ -208,6 +209,21 @@ GEM\n     parser (3.3.10.1)\n       ast (~> 2.4.1)\n       racc\n+    pg (1.6.3)\n+    pg (1.6.3-aarch64-linux)\n+    pg (1.6.3-aarch64-linux-musl)\n+    pg (1.6.3-arm64-darwin)\n+    pg (1.6.3-x86_64-linux)\n+    pg (1.6.3-x86_64-linux-musl)\n+    phlex (2.4.0)\n+      refract (~> 1.0)\n+      zeitwerk (~> 2.7)\n+    phlex-icons (2.54.0)\n+      phlex (>= 1.11)\n+    phlex-rails (2.4.0)\n+      phlex (~> 2.4.0)\n+      railties (>= 7.1, < 9)\n+      zeitwerk (~> 2.7)\n     pp (0.6.3)\n       prettyprint\n     prettyprint (0.2.0)"
+      addedLines[15]: "    pg (1.6.3)","    pg (1.6.3-aarch64-linux)","    pg (1.6.3-aarch64-linux-musl)","    pg (1.6.3-arm64-darwin)","    pg (1.6.3-x86_64-linux)","    pg (1.6.3-x86_64-linux-musl)","    phlex (2.4.0)","      refract (~> 1.0)","      zeitwerk (~> 2.7)","    phlex-icons (2.54.0)","      phlex (>= 1.11)","    phlex-rails (2.4.0)","      phlex (~> 2.4.0)","      railties (>= 7.1, < 9)","      zeitwerk (~> 2.7)"
+      removedLines[0]:
+    - file: Gemfile.lock
+      oldStart: 268
+      oldLines: 10
+      newStart: 284
+      newLines: 30
+      content: "@@ -268,10 +284,30 @@ GEM\n       erb\n       psych (>= 4.0.0)\n       tsort\n+    refract (1.1.0)\n+      prism\n+      zeitwerk\n     regexp_parser (2.11.3)\n     reline (0.6.3)\n       io-console (~> 0.5)\n     rexml (3.4.4)\n+    rspec-core (3.13.6)\n+      rspec-support (~> 3.13.0)\n+    rspec-expectations (3.13.5)\n+      diff-lcs (>= 1.2.0, < 2.0)\n+      rspec-support (~> 3.13.0)\n+    rspec-mocks (3.13.7)\n+      diff-lcs (>= 1.2.0, < 2.0)\n+      rspec-support (~> 3.13.0)\n+    rspec-rails (8.0.2)\n+      actionpack (>= 7.2)\n+      activesupport (>= 7.2)\n+      railties (>= 7.2)\n+      rspec-core (~> 3.13)\n+      rspec-expectations (~> 3.13)\n+      rspec-mocks (~> 3.13)\n+      rspec-support (~> 3.13)\n+    rspec-support (3.13.7)\n     rubocop (1.84.0)\n       json (~> 2.3)\n       language_server-protocol (~> 3.17.0.2)"
+      addedLines[20]: "    refract (1.1.0)","      prism","      zeitwerk","    rspec-core (3.13.6)","      rspec-support (~> 3.13.0)","    rspec-expectations (3.13.5)","      diff-lcs (>= 1.2.0, < 2.0)","      rspec-support (~> 3.13.0)","    rspec-mocks (3.13.7)","      diff-lcs (>= 1.2.0, < 2.0)","      rspec-support (~> 3.13.0)","    rspec-rails (8.0.2)","      actionpack (>= 7.2)","      activesupport (>= 7.2)","      railties (>= 7.2)","      rspec-core (~> 3.13)","      rspec-expectations (~> 3.13)","      rspec-mocks (~> 3.13)","      rspec-support (~> 3.13)","    rspec-support (3.13.7)"
+      removedLines[0]:
+    - file: Gemfile.lock
+      oldStart: 300
+      oldLines: 10
+      newStart: 336
+      newLines: 14
+      content: "@@ -300,10 +336,14 @@ GEM\n       rubocop (>= 1.72)\n       rubocop-performance (>= 1.24)\n       rubocop-rails (>= 2.30)\n+    rubocop-rspec (3.9.0)\n+      lint_roller (~> 1.1)\n+      rubocop (~> 1.81)\n     ruby-progressbar (1.13.0)\n     ruby-vips (2.3.0)\n       ffi (~> 1.12)\n       logger\n+    ruby_ui (1.0.2)\n     rubyzip (3.2.2)\n     securerandom (0.4.1)\n     selenium-webdriver (4.40.0)"
+      addedLines[4]: "    rubocop-rspec (3.9.0)","      lint_roller (~> 1.1)","      rubocop (~> 1.81)","    ruby_ui (1.0.2)"
+      removedLines[0]:
+    - file: Gemfile.lock
+      oldStart: 312
+      oldLines: 6
+      newStart: 352
+      newLines: 7
+      content: "@@ -312,6 +352,7 @@ GEM\n       rexml (~> 3.2, >= 3.2.5)\n       rubyzip (>= 1.2.2, < 4.0)\n       websocket (~> 1.0)\n+    sin_lru_redux (2.5.2)\n     solid_cable (3.0.12)\n       actioncable (>= 7.2)\n       activejob (>= 7.2)"
+      addedLines[1]: "    sin_lru_redux (2.5.2)"
+      removedLines[0]:
+    - file: Gemfile.lock
+      oldStart: 345
+      oldLines: 6
+      newStart: 386
+      newLines: 17
+      content: "@@ -345,6 +386,17 @@ GEM\n     stimulus-rails (1.3.4)\n       railties (>= 6.0.0)\n     stringio (3.2.0)\n+    tailwind_merge (1.3.2)\n+      sin_lru_redux (~> 2.5)\n+    tailwindcss-rails (4.4.0)\n+      railties (>= 7.0.0)\n+      tailwindcss-ruby (~> 4.0)\n+    tailwindcss-ruby (4.1.18)\n+    tailwindcss-ruby (4.1.18-aarch64-linux-gnu)\n+    tailwindcss-ruby (4.1.18-aarch64-linux-musl)\n+    tailwindcss-ruby (4.1.18-arm64-darwin)\n+    tailwindcss-ruby (4.1.18-x86_64-linux-gnu)\n+    tailwindcss-ruby (4.1.18-x86_64-linux-musl)\n     thor (1.5.0)\n     thruster (0.1.17)\n     thruster (0.1.17-aarch64-linux)"
+      addedLines[11]: "    tailwind_merge (1.3.2)","      sin_lru_redux (~> 2.5)","    tailwindcss-rails (4.4.0)","      railties (>= 7.0.0)","      tailwindcss-ruby (~> 4.0)","    tailwindcss-ruby (4.1.18)","    tailwindcss-ruby (4.1.18-aarch64-linux-gnu)","    tailwindcss-ruby (4.1.18-aarch64-linux-musl)","    tailwindcss-ruby (4.1.18-arm64-darwin)","    tailwindcss-ruby (4.1.18-x86_64-linux-gnu)","    tailwindcss-ruby (4.1.18-x86_64-linux-musl)"
+      removedLines[0]:
+    - file: Gemfile.lock
+      oldStart: 397
+      oldLines: 16
+      newStart: 449
+      newLines: 26
+      content: "@@ -397,16 +449,26 @@ DEPENDENCIES\n   importmap-rails\n   jbuilder\n   kamal\n+  pg\n+  phlex-icons (~> 2.54)\n+  phlex-rails (~> 2.4)\n   propshaft\n   puma (>= 5.0)\n   rails (~> 8.1.2)\n+  rspec-rails (~> 8.0.0)\n+  rubocop (~> 1.84)\n+  rubocop-rails\n   rubocop-rails-omakase\n+  rubocop-rspec\n+  ruby_ui (~> 1.0)\n   selenium-webdriver\n   solid_cable\n   solid_cache\n   solid_queue\n   sqlite3 (>= 2.1)\n   stimulus-rails\n+  tailwind_merge (~> 1.3)\n+  tailwindcss-rails (~> 4.4)\n   thruster\n   turbo-rails\n   tzinfo-data"
+      addedLines[10]: "  pg","  phlex-icons (~> 2.54)","  phlex-rails (~> 2.4)","  rspec-rails (~> 8.0.0)","  rubocop (~> 1.84)","  rubocop-rails","  rubocop-rspec","  ruby_ui (~> 1.0)","  tailwind_merge (~> 1.3)","  tailwindcss-rails (~> 4.4)"
+      removedLines[0]:
+    - file: Gemfile.lock
+      oldStart: 441
+      oldLines: 6
+      newStart: 503
+      newLines: 7
+      content: "@@ -441,6 +503,7 @@ CHECKSUMS\n   crass (1.0.6) sha256=dc516022a56e7b3b156099abc81b6d2b08ea1ed12676ac7a5657617f012bd45d\n   date (3.5.1) sha256=750d06384d7b9c15d562c76291407d89e368dda4d4fff957eb94962d325a0dc0\n   debug (1.11.1) sha256=2e0b0ac6119f2207a6f8ac7d4a73ca8eb4e440f64da0a3136c30343146e952b6\n+  diff-lcs (1.6.2) sha256=9ae0d2cba7d4df3075fe8cd8602a8604993efc0dfa934cff568969efb1909962\n   dotenv (3.2.0) sha256=e375b83121ea7ca4ce20f214740076129ab8514cd81378161f11c03853fe619d\n   drb (2.2.3) sha256=0b00d6fdb50995fe4a45dea13663493c841112e4068656854646f418fda13373\n   ed25519 (1.4.0) sha256=16e97f5198689a154247169f3453ef4cfd3f7a47481fde0ae33206cdfdcac506"
+      addedLines[1]: "  diff-lcs (1.6.2) sha256=9ae0d2cba7d4df3075fe8cd8602a8604993efc0dfa934cff568969efb1909962"
+      removedLines[0]:
+    - file: Gemfile.lock
+      oldStart: 493
+      oldLines: 6
+      newStart: 556
+      newLines: 15
+      content: "@@ -493,6 +556,15 @@ CHECKSUMS\n   ostruct (0.6.3) sha256=95a2ed4a4bd1d190784e666b47b2d3f078e4a9efda2fccf18f84ddc6538ed912\n   parallel (1.27.0) sha256=4ac151e1806b755fb4e2dc2332cbf0e54f2e24ba821ff2d3dcf86bf6dc4ae130\n   parser (3.3.10.1) sha256=06f6a725d2cd91e5e7f2b7c32ba143631e1f7c8ae2fb918fc4cebec187e6a688\n+  pg (1.6.3) sha256=1388d0563e13d2758c1089e35e973a3249e955c659592d10e5b77c468f628a99\n+  pg (1.6.3-aarch64-linux) sha256=0698ad563e02383c27510b76bf7d4cd2de19cd1d16a5013f375dd473e4be72ea\n+  pg (1.6.3-aarch64-linux-musl) sha256=06a75f4ea04b05140146f2a10550b8e0d9f006a79cdaf8b5b130cde40e3ecc2c\n+  pg (1.6.3-arm64-darwin) sha256=7240330b572e6355d7c75a7de535edb5dfcbd6295d9c7777df4d9dddfb8c0e5f\n+  pg (1.6.3-x86_64-linux) sha256=5d9e188c8f7a0295d162b7b88a768d8452a899977d44f3274d1946d67920ae8d\n+  pg (1.6.3-x86_64-linux-musl) sha256=9c9c90d98c72f78eb04c0f55e9618fe55d1512128e411035fe229ff427864009\n+  phlex (2.4.0) sha256=8aad2f0cd792d7b1bd287f15a1f89474c9cacac28120dc33d2a81467ae934067\n+  phlex-icons (2.54.0) sha256=adc863f6c689e2d8536cef5d83243c00e97225c9ad56bf48f5a8c9eac2954e6f\n+  phlex-rails (2.4.0) sha256=2bcddbd488681acb25753bab1887d3ac150e644244ff8ba307f2171a4d0195f5\n   pp (0.6.3) sha256=2951d514450b93ccfeb1df7d021cae0da16e0a7f95ee1e2273719669d0ab9df6\n   prettyprint (0.2.0) sha256=2bc9e15581a94742064a3cc8b0fb9d45aae3d03a1baa6ef80922627a0766f193\n   prism (1.9.0) sha256=7b530c6a9f92c24300014919c9dcbc055bf4cdf51ec30aed099b06cd6674ef85"
+      addedLines[9]: "  pg (1.6.3) sha256=1388d0563e13d2758c1089e35e973a3249e955c659592d10e5b77c468f628a99","  pg (1.6.3-aarch64-linux) sha256=0698ad563e02383c27510b76bf7d4cd2de19cd1d16a5013f375dd473e4be72ea","  pg (1.6.3-aarch64-linux-musl) sha256=06a75f4ea04b05140146f2a10550b8e0d9f006a79cdaf8b5b130cde40e3ecc2c","  pg (1.6.3-arm64-darwin) sha256=7240330b572e6355d7c75a7de535edb5dfcbd6295d9c7777df4d9dddfb8c0e5f","  pg (1.6.3-x86_64-linux) sha256=5d9e188c8f7a0295d162b7b88a768d8452a899977d44f3274d1946d67920ae8d","  pg (1.6.3-x86_64-linux-musl) sha256=9c9c90d98c72f78eb04c0f55e9618fe55d1512128e411035fe229ff427864009","  phlex (2.4.0) sha256=8aad2f0cd792d7b1bd287f15a1f89474c9cacac28120dc33d2a81467ae934067","  phlex-icons (2.54.0) sha256=adc863f6c689e2d8536cef5d83243c00e97225c9ad56bf48f5a8c9eac2954e6f","  phlex-rails (2.4.0) sha256=2bcddbd488681acb25753bab1887d3ac150e644244ff8ba307f2171a4d0195f5"
+      removedLines[0]:
+    - file: Gemfile.lock
+      oldStart: 513
+      oldLines: 19
+      newStart: 585
+      newLines: 28
+      content: "@@ -513,19 +585,28 @@ CHECKSUMS\n   rainbow (3.1.1) sha256=039491aa3a89f42efa1d6dec2fc4e62ede96eb6acd95e52f1ad581182b79bc6a\n   rake (13.3.1) sha256=8c9e89d09f66a26a01264e7e3480ec0607f0c497a861ef16063604b1b08eb19c\n   rdoc (7.1.0) sha256=494899df0706c178596ca6e1d50f1b7eb285a9b2aae715be5abd742734f17363\n+  refract (1.1.0) sha256=ee3b9627e39f7692831101e2fedd73e0d09a592ff5d5c05f171d14211fc7a9c7\n   regexp_parser (2.11.3) sha256=ca13f381a173b7a93450e53459075c9b76a10433caadcb2f1180f2c741fc55a4\n   reline (0.6.3) sha256=1198b04973565b36ec0f11542ab3f5cfeeec34823f4e54cebde90968092b1835\n   rexml (3.4.4) sha256=19e0a2c3425dfbf2d4fc1189747bdb2f849b6c5e74180401b15734bc97b5d142\n+  rspec-core (3.13.6) sha256=a8823c6411667b60a8bca135364351dda34cd55e44ff94c4be4633b37d828b2d\n+  rspec-expectations (3.13.5) sha256=33a4d3a1d95060aea4c94e9f237030a8f9eae5615e9bd85718fe3a09e4b58836\n+  rspec-mocks (3.13.7) sha256=0979034e64b1d7a838aaaddf12bf065ea4dc40ef3d4c39f01f93ae2c66c62b1c\n+  rspec-rails (8.0.2) sha256=113139a53f5d068d4f48d1c29ad5f982013ed9b0daa69d7f7b266eda5d433ace\n+  rspec-support (3.13.7) sha256=0640e5570872aafefd79867901deeeeb40b0c9875a36b983d85f54fb7381c47c\n   rubocop (1.84.0) sha256=88dec310153bb685a879f5a7cdb601f6287b8f0ee675d9dc63a17c7204c4190a\n   rubocop-ast (1.49.0) sha256=49c3676d3123a0923d333e20c6c2dbaaae2d2287b475273fddee0c61da9f71fd\n   rubocop-performance (1.26.1) sha256=cd19b936ff196df85829d264b522fd4f98b6c89ad271fa52744a8c11b8f71834\n   rubocop-rails (2.34.3) sha256=10d37989024865ecda8199f311f3faca990143fbac967de943f88aca11eb9ad2\n   rubocop-rails-omakase (1.1.0) sha256=2af73ac8ee5852de2919abbd2618af9c15c19b512c4cfc1f9a5d3b6ef009109d\n+  rubocop-rspec (3.9.0) sha256=8fa70a3619408237d789aeecfb9beef40576acc855173e60939d63332fdb55e2\n   ruby-progressbar (1.13.0) sha256=80fc9c47a9b640d6834e0dc7b3c94c9df37f08cb072b7761e4a71e22cff29b33\n   ruby-vips (2.3.0) sha256=e685ec02c13969912debbd98019e50492e12989282da5f37d05f5471442f5374\n+  ruby_ui (1.0.2) sha256=a98541b1046d8ab044eb6e62db2281d610bece5bf8301431883bbdbee32486c9\n   rubyzip (3.2.2) sha256=c0ed99385f0625415c8f05bcae33fe649ed2952894a95ff8b08f26ca57ea5b3c\n   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1\n   selenium-webdriver (4.40.0) sha256=16ef7aa9853c1d4b9d52eac45aafa916e3934c5c83cb4facb03f250adfd15e5b\n+  sin_lru_redux (2.5.2) sha256=feed104c943afaeeecb1ad83f3f63562088b9785a816625c32b2305eccbd9963\n   solid_cable (3.0.12) sha256=a168a54731a455d5627af48d8441ea3b554b8c1f6e6cd6074109de493e6b0460\n   solid_cache (1.0.10) sha256=bc05a2fb3ac78a6f43cbb5946679cf9db67dd30d22939ededc385cb93e120d41\n   solid_queue (1.3.1) sha256=d9580111180c339804ff1a810a7768f69f5dc694d31e86cf1535ff2cd7a87428"
+      addedLines[9]: "  refract (1.1.0) sha256=ee3b9627e39f7692831101e2fedd73e0d09a592ff5d5c05f171d14211fc7a9c7","  rspec-core (3.13.6) sha256=a8823c6411667b60a8bca135364351dda34cd55e44ff94c4be4633b37d828b2d","  rspec-expectations (3.13.5) sha256=33a4d3a1d95060aea4c94e9f237030a8f9eae5615e9bd85718fe3a09e4b58836","  rspec-mocks (3.13.7) sha256=0979034e64b1d7a838aaaddf12bf065ea4dc40ef3d4c39f01f93ae2c66c62b1c","  rspec-rails (8.0.2) sha256=113139a53f5d068d4f48d1c29ad5f982013ed9b0daa69d7f7b266eda5d433ace","  rspec-support (3.13.7) sha256=0640e5570872aafefd79867901deeeeb40b0c9875a36b983d85f54fb7381c47c","  rubocop-rspec (3.9.0) sha256=8fa70a3619408237d789aeecfb9beef40576acc855173e60939d63332fdb55e2","  ruby_ui (1.0.2) sha256=a98541b1046d8ab044eb6e62db2281d610bece5bf8301431883bbdbee32486c9","  sin_lru_redux (2.5.2) sha256=feed104c943afaeeecb1ad83f3f63562088b9785a816625c32b2305eccbd9963"
+      removedLines[0]:
+    - file: Gemfile.lock
+      oldStart: 539
+      oldLines: 6
+      newStart: 620
+      newLines: 14
+      content: "@@ -539,6 +620,14 @@ CHECKSUMS\n   sshkit (1.25.0) sha256=c8c6543cdb60f91f1d277306d585dd11b6a064cb44eab0972827e4311ff96744\n   stimulus-rails (1.3.4) sha256=765676ffa1f33af64ce026d26b48e8ffb2e0b94e0f50e9119e11d6107d67cb06\n   stringio (3.2.0) sha256=c37cb2e58b4ffbd33fe5cd948c05934af997b36e0b6ca6fdf43afa234cf222e1\n+  tailwind_merge (1.3.2) sha256=79097c287772b7c3048947473c0c4e17c6e5fe4d3cede3291db96a370256a941\n+  tailwindcss-rails (4.4.0) sha256=efa2961351a52acebe616e645a81a30bb4f27fde46cc06ce7688d1cd1131e916\n+  tailwindcss-ruby (4.1.18) sha256=b62fad5b00494e92987ee319dfb5c5ad272f0ed93649963d62f08d2ba0f03fa7\n+  tailwindcss-ruby (4.1.18-aarch64-linux-gnu) sha256=e10f9560bccddbb4955fd535b3bcc8c7071a7df07404dd473a23fa791ec4e46b\n+  tailwindcss-ruby (4.1.18-aarch64-linux-musl) sha256=3c8426674718a2c98a0649c825ac0b3286ff52acd0b4052d7d19126cd74904f3\n+  tailwindcss-ruby (4.1.18-arm64-darwin) sha256=f940531d5a030c566d3d616004235bcd4c361abdd328f7d6c7e3a953a32e0155\n+  tailwindcss-ruby (4.1.18-x86_64-linux-gnu) sha256=e0a2220163246fe0126c5c5bafb95bc6206e7d21fce2a2878fd9c9a359137534\n+  tailwindcss-ruby (4.1.18-x86_64-linux-musl) sha256=d957cf545b09d2db7eb6267450cc1fc589e126524066537a0c4d5b99d701f4b2\n   thor (1.5.0) sha256=e3a9e55fe857e44859ce104a84675ab6e8cd59c650a49106a05f55f136425e73\n   thruster (0.1.17) sha256=6f3f1de43e22f0162d81cbc363f45ee42a1b8460213856c1a899cbf0d3297235\n   thruster (0.1.17-aarch64-linux) sha256=1b3a34b2814185c2aeaf835b5ecff5348cdcf8e77809f7a092d46e4b962a16ba"
+      addedLines[8]: "  tailwind_merge (1.3.2) sha256=79097c287772b7c3048947473c0c4e17c6e5fe4d3cede3291db96a370256a941","  tailwindcss-rails (4.4.0) sha256=efa2961351a52acebe616e645a81a30bb4f27fde46cc06ce7688d1cd1131e916","  tailwindcss-ruby (4.1.18) sha256=b62fad5b00494e92987ee319dfb5c5ad272f0ed93649963d62f08d2ba0f03fa7","  tailwindcss-ruby (4.1.18-aarch64-linux-gnu) sha256=e10f9560bccddbb4955fd535b3bcc8c7071a7df07404dd473a23fa791ec4e46b","  tailwindcss-ruby (4.1.18-aarch64-linux-musl) sha256=3c8426674718a2c98a0649c825ac0b3286ff52acd0b4052d7d19126cd74904f3","  tailwindcss-ruby (4.1.18-arm64-darwin) sha256=f940531d5a030c566d3d616004235bcd4c361abdd328f7d6c7e3a953a32e0155","  tailwindcss-ruby (4.1.18-x86_64-linux-gnu) sha256=e0a2220163246fe0126c5c5bafb95bc6206e7d21fce2a2878fd9c9a359137534","  tailwindcss-ruby (4.1.18-x86_64-linux-musl) sha256=d957cf545b09d2db7eb6267450cc1fc589e126524066537a0c4d5b99d701f4b2"
+      removedLines[0]:
+    - file: Procfile.dev
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 2
+      content: "@@ -0,0 +1,2 @@\n+web: bin/rails server\n+css: bin/rails tailwindcss:watch"
+      addedLines[2]: "web: bin/rails server","css: bin/rails tailwindcss:watch"
+      removedLines[0]:
+    - file: app/assets/tailwind/application.css
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 147
+      content: "@@ -0,0 +1,147 @@\n+@import \"tailwindcss\";\n+\n+@custom-variant dark (&:is(.dark *));\n+\n+:root {\n+  --background: oklch(1 0 0);\n+  --foreground: oklch(0.145 0 0);\n+  --card: oklch(1 0 0);\n+  --card-foreground: oklch(0.145 0 0);\n+  --popover: oklch(1 0 0);\n+  --popover-foreground: oklch(0.145 0 0);\n+  --primary: oklch(0.205 0 0);\n+  --primary-foreground: oklch(0.985 0 0);\n+  --secondary: oklch(0.97 0 0);\n+  --secondary-foreground: oklch(0.205 0 0);\n+  --muted: oklch(0.97 0 0);\n+  --muted-foreground: oklch(0.556 0 0);\n+  --accent: oklch(0.97 0 0);\n+  --accent-foreground: oklch(0.205 0 0);\n+  --destructive: oklch(0.577 0.245 27.325);\n+  --destructive-foreground: oklch(0.577 0.245 27.325);\n+  --border: oklch(0.922 0 0);\n+  --input: oklch(0.922 0 0);\n+  --ring: oklch(0.708 0 0);\n+  --chart-1: oklch(0.646 0.222 41.116);\n+  --chart-2: oklch(0.6 0.118 184.704);\n+  --chart-3: oklch(0.398 0.07 227.392);\n+  --chart-4: oklch(0.828 0.189 84.429);\n+  --chart-5: oklch(0.769 0.188 70.08);\n+  --radius: 0.625rem;\n+  --sidebar: oklch(0.985 0 0);\n+  --sidebar-foreground: oklch(0.145 0 0);\n+  --sidebar-primary: oklch(0.205 0 0);\n+  --sidebar-primary-foreground: oklch(0.985 0 0);\n+  --sidebar-accent: oklch(0.97 0 0);\n+  --sidebar-accent-foreground: oklch(0.205 0 0);\n+  --sidebar-border: oklch(0.922 0 0);\n+  --sidebar-ring: oklch(0.708 0 0);\n+\n+  /* ruby_ui specific */\n+  --warning: hsl(38 92% 50%);\n+  --warning-foreground: hsl(0 0% 100%);\n+  --success: hsl(87 100% 37%);\n+  --success-foreground: hsl(0 0% 100%);\n+}\n+\n+.dark {\n+  --background: oklch(0.145 0 0);\n+  --foreground: oklch(0.985 0 0);\n+  --card: oklch(0.145 0 0);\n+  --card-foreground: oklch(0.985 0 0);\n+  --popover: oklch(0.145 0 0);\n+  --popover-foreground: oklch(0.985 0 0);\n+  --primary: oklch(0.985 0 0);\n+  --primary-foreground: oklch(0.205 0 0);\n+  --secondary: oklch(0.269 0 0);\n+  --secondary-foreground: oklch(0.985 0 0);\n+  --muted: oklch(0.269 0 0);\n+  --muted-foreground: oklch(0.708 0 0);\n+  --accent: oklch(0.269 0 0);\n+  --accent-foreground: oklch(0.985 0 0);\n+  --destructive: oklch(0.396 0.141 25.723);\n+  --destructive-foreground: oklch(0.637 0.237 25.331);\n+  --border: oklch(0.269 0 0);\n+  --input: oklch(0.269 0 0);\n+  --ring: oklch(0.439 0 0);\n+  --chart-1: oklch(0.488 0.243 264.376);\n+  --chart-2: oklch(0.696 0.17 162.48);\n+  --chart-3: oklch(0.769 0.188 70.08);\n+  --chart-4: oklch(0.627 0.265 303.9);\n+  --chart-5: oklch(0.645 0.246 16.439);\n+  --sidebar: oklch(0.205 0 0);\n+  --sidebar-foreground: oklch(0.985 0 0);\n+  --sidebar-primary: oklch(0.488 0.243 264.376);\n+  --sidebar-primary-foreground: oklch(0.985 0 0);\n+  --sidebar-accent: oklch(0.269 0 0);\n+  --sidebar-accent-foreground: oklch(0.985 0 0);\n+  --sidebar-border: oklch(0.269 0 0);\n+  --sidebar-ring: oklch(0.439 0 0);\n+\n+  /* ruby_ui specific */\n+  --warning: hsl(38 92% 50%);\n+  --warning-foreground: hsl(0 0% 100%);\n+  --success: hsl(84 81% 44%);\n+  --success-foreground: hsl(0 0% 100%);\n+}\n+\n+@theme inline {\n+  --color-background: var(--background);\n+  --color-foreground: var(--foreground);\n+  --color-card: var(--card);\n+  --color-card-foreground: var(--card-foreground);\n+  --color-popover: var(--popover);\n+  --color-popover-foreground: var(--popover-foreground);\n+  --color-primary: var(--primary);\n+  --color-primary-foreground: var(--primary-foreground);\n+  --color-secondary: var(--secondary);\n+  --color-secondary-foreground: var(--secondary-foreground);\n+  --color-muted: var(--muted);\n+  --color-muted-foreground: var(--muted-foreground);\n+  --color-accent: var(--accent);\n+  --color-accent-foreground: var(--accent-foreground);\n+  --color-destructive: var(--destructive);\n+  --color-destructive-foreground: var(--destructive-foreground);\n+  --color-border: var(--border);\n+  --color-input: var(--input);\n+  --color-ring: var(--ring);\n+  --color-chart-1: var(--chart-1);\n+  --color-chart-2: var(--chart-2);\n+  --color-chart-3: var(--chart-3);\n+  --color-chart-4: var(--chart-4);\n+  --color-chart-5: var(--chart-5);\n+  --radius-sm: calc(var(--radius) - 4px);\n+  --radius-md: calc(var(--radius) - 2px);\n+  --radius-lg: var(--radius);\n+  --radius-xl: calc(var(--radius) + 4px);\n+  --color-sidebar: var(--sidebar);\n+  --color-sidebar-foreground: var(--sidebar-foreground);\n+  --color-sidebar-primary: var(--sidebar-primary);\n+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);\n+  --color-sidebar-accent: var(--sidebar-accent);\n+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);\n+  --color-sidebar-border: var(--sidebar-border);\n+  --color-sidebar-ring: var(--sidebar-ring);\n+\n+  /* ruby_ui specific */\n+  --color-warning: var(--warning);\n+  --color-warning-foreground: var(--warning-foreground);\n+  --color-success: var(--success);\n+  --color-success-foreground: var(--success-foreground);\n+}\n+\n+/* Container settings */\n+@utility container {\n+  margin-inline: auto;\n+  padding-inline: 2rem;\n+  max-width: 1400px;\n+}\n+\n+@layer base {\n+  * {\n+    @apply border-border outline-ring/50;\n+  }\n+  body {\n+    @apply bg-background text-foreground;\n+  }\n+}"
+      addedLines[147]: "@import \"tailwindcss\";","","@custom-variant dark (&:is(.dark *));","",":root {","  --background: oklch(1 0 0);","  --foreground: oklch(0.145 0 0);","  --card: oklch(1 0 0);","  --card-foreground: oklch(0.145 0 0);","  --popover: oklch(1 0 0);","  --popover-foreground: oklch(0.145 0 0);","  --primary: oklch(0.205 0 0);","  --primary-foreground: oklch(0.985 0 0);","  --secondary: oklch(0.97 0 0);","  --secondary-foreground: oklch(0.205 0 0);","  --muted: oklch(0.97 0 0);","  --muted-foreground: oklch(0.556 0 0);","  --accent: oklch(0.97 0 0);","  --accent-foreground: oklch(0.205 0 0);","  --destructive: oklch(0.577 0.245 27.325);","  --destructive-foreground: oklch(0.577 0.245 27.325);","  --border: oklch(0.922 0 0);","  --input: oklch(0.922 0 0);","  --ring: oklch(0.708 0 0);","  --chart-1: oklch(0.646 0.222 41.116);","  --chart-2: oklch(0.6 0.118 184.704);","  --chart-3: oklch(0.398 0.07 227.392);","  --chart-4: oklch(0.828 0.189 84.429);","  --chart-5: oklch(0.769 0.188 70.08);","  --radius: 0.625rem;","  --sidebar: oklch(0.985 0 0);","  --sidebar-foreground: oklch(0.145 0 0);","  --sidebar-primary: oklch(0.205 0 0);","  --sidebar-primary-foreground: oklch(0.985 0 0);","  --sidebar-accent: oklch(0.97 0 0);","  --sidebar-accent-foreground: oklch(0.205 0 0);","  --sidebar-border: oklch(0.922 0 0);","  --sidebar-ring: oklch(0.708 0 0);","","  /* ruby_ui specific */","  --warning: hsl(38 92% 50%);","  --warning-foreground: hsl(0 0% 100%);","  --success: hsl(87 100% 37%);","  --success-foreground: hsl(0 0% 100%);","}","",".dark {","  --background: oklch(0.145 0 0);","  --foreground: oklch(0.985 0 0);","  --card: oklch(0.145 0 0);","  --card-foreground: oklch(0.985 0 0);","  --popover: oklch(0.145 0 0);","  --popover-foreground: oklch(0.985 0 0);","  --primary: oklch(0.985 0 0);","  --primary-foreground: oklch(0.205 0 0);","  --secondary: oklch(0.269 0 0);","  --secondary-foreground: oklch(0.985 0 0);","  --muted: oklch(0.269 0 0);","  --muted-foreground: oklch(0.708 0 0);","  --accent: oklch(0.269 0 0);","  --accent-foreground: oklch(0.985 0 0);","  --destructive: oklch(0.396 0.141 25.723);","  --destructive-foreground: oklch(0.637 0.237 25.331);","  --border: oklch(0.269 0 0);","  --input: oklch(0.269 0 0);","  --ring: oklch(0.439 0 0);","  --chart-1: oklch(0.488 0.243 264.376);","  --chart-2: oklch(0.696 0.17 162.48);","  --chart-3: oklch(0.769 0.188 70.08);","  --chart-4: oklch(0.627 0.265 303.9);","  --chart-5: oklch(0.645 0.246 16.439);","  --sidebar: oklch(0.205 0 0);","  --sidebar-foreground: oklch(0.985 0 0);","  --sidebar-primary: oklch(0.488 0.243 264.376);","  --sidebar-primary-foreground: oklch(0.985 0 0);","  --sidebar-accent: oklch(0.269 0 0);","  --sidebar-accent-foreground: oklch(0.985 0 0);","  --sidebar-border: oklch(0.269 0 0);","  --sidebar-ring: oklch(0.439 0 0);","","  /* ruby_ui specific */","  --warning: hsl(38 92% 50%);","  --warning-foreground: hsl(0 0% 100%);","  --success: hsl(84 81% 44%);","  --success-foreground: hsl(0 0% 100%);","}","","@theme inline {","  --color-background: var(--background);","  --color-foreground: var(--foreground);","  --color-card: var(--card);","  --color-card-foreground: var(--card-foreground);","  --color-popover: var(--popover);","  --color-popover-foreground: var(--popover-foreground);","  --color-primary: var(--primary);","  --color-primary-foreground: var(--primary-foreground);","  --color-secondary: var(--secondary);","  --color-secondary-foreground: var(--secondary-foreground);","  --color-muted: var(--muted);","  --color-muted-foreground: var(--muted-foreground);","  --color-accent: var(--accent);","  --color-accent-foreground: var(--accent-foreground);","  --color-destructive: var(--destructive);","  --color-destructive-foreground: var(--destructive-foreground);","  --color-border: var(--border);","  --color-input: var(--input);","  --color-ring: var(--ring);","  --color-chart-1: var(--chart-1);","  --color-chart-2: var(--chart-2);","  --color-chart-3: var(--chart-3);","  --color-chart-4: var(--chart-4);","  --color-chart-5: var(--chart-5);","  --radius-sm: calc(var(--radius) - 4px);","  --radius-md: calc(var(--radius) - 2px);","  --radius-lg: var(--radius);","  --radius-xl: calc(var(--radius) + 4px);","  --color-sidebar: var(--sidebar);","  --color-sidebar-foreground: var(--sidebar-foreground);","  --color-sidebar-primary: var(--sidebar-primary);","  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);","  --color-sidebar-accent: var(--sidebar-accent);","  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);","  --color-sidebar-border: var(--sidebar-border);","  --color-sidebar-ring: var(--sidebar-ring);","","  /* ruby_ui specific */","  --color-warning: var(--warning);","  --color-warning-foreground: var(--warning-foreground);","  --color-success: var(--success);","  --color-success-foreground: var(--success-foreground);","}","",/* Container settings */,"@utility container {","  margin-inline: auto;","  padding-inline: 2rem;","  max-width: 1400px;","}","","@layer base {","  * {","    @apply border-border outline-ring/50;","  }","  body {","    @apply bg-background text-foreground;","  }","}"
+      removedLines[0]:
+    - file: app/components/base.rb
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 13
+      content: "@@ -0,0 +1,13 @@\n+# frozen_string_literal: true\n+\n+class Components::Base < Phlex::HTML\n+  # Include any helpers you want to be available across all components\n+  include Phlex::Rails::Helpers::Routes\n+\n+  if Rails.env.development?\n+    def before_template\n+      comment { \"Before #{self.class.name}\" }\n+      super\n+    end\n+  end\n+end"
+      addedLines[13]: "# frozen_string_literal: true","","class Components::Base < Phlex::HTML","  # Include any helpers you want to be available across all components","  include Phlex::Rails::Helpers::Routes","","  if Rails.env.development?","    def before_template","      comment { \"Before #{self.class.name}\" }","      super","    end","  end",end
+      removedLines[0]:
+    - file: app/components/ruby_ui/base.rb
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 22
+      content: "@@ -0,0 +1,22 @@\n+# frozen_string_literal: true\n+\n+require \"tailwind_merge\"\n+\n+module RubyUI\n+  class Base < Phlex::HTML\n+    TAILWIND_MERGER = ::TailwindMerge::Merger.new.freeze unless defined?(TAILWIND_MERGER)\n+\n+    attr_reader :attrs\n+\n+    def initialize(**user_attrs)\n+      @attrs = mix(default_attrs, user_attrs)\n+      @attrs[:class] = TAILWIND_MERGER.merge(@attrs[:class]) if @attrs[:class]\n+    end\n+\n+    private\n+\n+    def default_attrs\n+      {}\n+    end\n+  end\n+end"
+      addedLines[22]: "# frozen_string_literal: true","","require \"tailwind_merge\"","",module RubyUI,"  class Base < Phlex::HTML","    TAILWIND_MERGER = ::TailwindMerge::Merger.new.freeze unless defined?(TAILWIND_MERGER)","","    attr_reader :attrs","","    def initialize(**user_attrs)","      @attrs = mix(default_attrs, user_attrs)","      @attrs[:class] = TAILWIND_MERGER.merge(@attrs[:class]) if @attrs[:class]","    end","","    private","","    def default_attrs","      {}","    end","  end",end
+      removedLines[0]:
+    - file: app/components/ruby_ui/card/card.rb
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 17
+      content: "@@ -0,0 +1,17 @@\n+# frozen_string_literal: true\n+\n+module RubyUI\n+  class Card < Base\n+    def view_template(&)\n+      div(**attrs, &)\n+    end\n+\n+    private\n+\n+    def default_attrs\n+      {\n+        class: \"rounded-xl border bg-background shadow\"\n+      }\n+    end\n+  end\n+end"
+      addedLines[17]: "# frozen_string_literal: true","",module RubyUI,"  class Card < Base","    def view_template(&)","      div(**attrs, &)","    end","","    private","","    def default_attrs","      {","        class: \"rounded-xl border bg-background shadow\"","      }","    end","  end",end
+      removedLines[0]:
+    - file: app/components/ruby_ui/card/card_content.rb
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 17
+      content: "@@ -0,0 +1,17 @@\n+# frozen_string_literal: true\n+\n+module RubyUI\n+  class CardContent < Base\n+    def view_template(&)\n+      div(**attrs, &)\n+    end\n+\n+    private\n+\n+    def default_attrs\n+      {\n+        class: \"p-6 pt-0\"\n+      }\n+    end\n+  end\n+end"
+      addedLines[17]: "# frozen_string_literal: true","",module RubyUI,"  class CardContent < Base","    def view_template(&)","      div(**attrs, &)","    end","","    private","","    def default_attrs","      {","        class: \"p-6 pt-0\"","      }","    end","  end",end
+      removedLines[0]:
+    - file: app/components/ruby_ui/card/card_description.rb
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 17
+      content: "@@ -0,0 +1,17 @@\n+# frozen_string_literal: true\n+\n+module RubyUI\n+  class CardDescription < Base\n+    def view_template(&)\n+      p(**attrs, &)\n+    end\n+\n+    private\n+\n+    def default_attrs\n+      {\n+        class: \"text-sm text-muted-foreground\"\n+      }\n+    end\n+  end\n+end"
+      addedLines[17]: "# frozen_string_literal: true","",module RubyUI,"  class CardDescription < Base","    def view_template(&)","      p(**attrs, &)","    end","","    private","","    def default_attrs","      {","        class: \"text-sm text-muted-foreground\"","      }","    end","  end",end
+      removedLines[0]:
+    - file: app/components/ruby_ui/card/card_footer.rb
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 17
+      content: "@@ -0,0 +1,17 @@\n+# frozen_string_literal: true\n+\n+module RubyUI\n+  class CardFooter < Base\n+    def view_template(&)\n+      div(**attrs, &)\n+    end\n+\n+    private\n+\n+    def default_attrs\n+      {\n+        class: \"items-center p-6 pt-0\"\n+      }\n+    end\n+  end\n+end"
+      addedLines[17]: "# frozen_string_literal: true","",module RubyUI,"  class CardFooter < Base","    def view_template(&)","      div(**attrs, &)","    end","","    private","","    def default_attrs","      {","        class: \"items-center p-6 pt-0\"","      }","    end","  end",end
+      removedLines[0]:
+    - file: app/components/ruby_ui/card/card_header.rb
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 17
+      content: "@@ -0,0 +1,17 @@\n+# frozen_string_literal: true\n+\n+module RubyUI\n+  class CardHeader < Base\n+    def view_template(&)\n+      div(**attrs, &)\n+    end\n+\n+    private\n+\n+    def default_attrs\n+      {\n+        class: \"flex flex-col space-y-1.5 p-6\"\n+      }\n+    end\n+  end\n+end"
+      addedLines[17]: "# frozen_string_literal: true","",module RubyUI,"  class CardHeader < Base","    def view_template(&)","      div(**attrs, &)","    end","","    private","","    def default_attrs","      {","        class: \"flex flex-col space-y-1.5 p-6\"","      }","    end","  end",end
+      removedLines[0]:
+    - file: app/components/ruby_ui/card/card_title.rb
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 17
+      content: "@@ -0,0 +1,17 @@\n+# frozen_string_literal: true\n+\n+module RubyUI\n+  class CardTitle < Base\n+    def view_template(&)\n+      h3(**attrs, &)\n+    end\n+\n+    private\n+\n+    def default_attrs\n+      {\n+        class: \"font-semibold leading-none tracking-tight\"\n+      }\n+    end\n+  end\n+end"
+      addedLines[17]: "# frozen_string_literal: true","",module RubyUI,"  class CardTitle < Base","    def view_template(&)","      h3(**attrs, &)","    end","","    private","","    def default_attrs","      {","        class: \"font-semibold leading-none tracking-tight\"","      }","    end","  end",end
+      removedLines[0]:
+    - file: app/components/ruby_ui/navbar/navbar.rb
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 17
+      content: "@@ -0,0 +1,17 @@\n+# frozen_string_literal: true\n+\n+module RubyUI\n+  class Navbar < Base\n+    def view_template(&)\n+      aside(**attrs, &)\n+    end\n+\n+    private\n+\n+    def default_attrs\n+      {\n+        class: \"w-screen border-r bg-background p-4 h-12 bg-emerald-500 absolute flex flex-row items-center gap-12\"\n+      }\n+    end\n+  end\n+end"
+      addedLines[17]: "# frozen_string_literal: true","",module RubyUI,"  class Navbar < Base","    def view_template(&)","      aside(**attrs, &)","    end","","    private","","    def default_attrs","      {","        class: \"w-screen border-r bg-background p-4 h-12 bg-emerald-500 absolute flex flex-row items-center gap-12\"","      }","    end","  end",end
+      removedLines[0]:
+    - file: app/components/ruby_ui/navbar/navbar_link.rb
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 17
+      content: "@@ -0,0 +1,17 @@\n+# frozen_string_literal: true\n+\n+module RubyUI\n+  class NavbarLink < Base\n+    def view_template(&)\n+      a(**attrs, &)\n+    end\n+\n+    private\n+\n+    def default_attrs\n+      {\n+        class: \"text-sm font-medium transition-colors hover:text-primary\"\n+      }\n+    end\n+  end\n+end"
+      addedLines[17]: "# frozen_string_literal: true","",module RubyUI,"  class NavbarLink < Base","    def view_template(&)","      a(**attrs, &)","    end","","    private","","    def default_attrs","      {","        class: \"text-sm font-medium transition-colors hover:text-primary\"","      }","    end","  end",end
+      removedLines[0]:
+    - file: app/components/ruby_ui/navbar/navbar_links.rb
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 17
+      content: "@@ -0,0 +1,17 @@\n+# frozen_string_literal: true\n+\n+module RubyUI\n+  class NavbarLinks < Base\n+    def view_template(&)\n+      div(**attrs, &)\n+    end\n+\n+    private\n+\n+    def default_attrs\n+      {\n+        class: \"flex gap-4\"\n+      }\n+    end\n+  end\n+end"
+      addedLines[17]: "# frozen_string_literal: true","",module RubyUI,"  class NavbarLinks < Base","    def view_template(&)","      div(**attrs, &)","    end","","    private","","    def default_attrs","      {","        class: \"flex gap-4\"","      }","    end","  end",end
+      removedLines[0]:
+    - file: app/components/ruby_ui/navbar/navbar_logo.rb
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 17
+      content: "@@ -0,0 +1,17 @@\n+# frozen_string_literal: true\n+\n+module RubyUI\n+  class NavbarLogo < Base\n+    def view_template(&)\n+      a(**attrs, &)\n+    end\n+\n+    private\n+\n+    def default_attrs\n+      {\n+        class: \"\"\n+      }\n+    end\n+  end\n+end"
+      addedLines[17]: "# frozen_string_literal: true","",module RubyUI,"  class NavbarLogo < Base","    def view_template(&)","      a(**attrs, &)","    end","","    private","","    def default_attrs","      {","        class: \"\"","      }","    end","  end",end
+      removedLines[0]:
+    - file: app/controllers/dashboard_controller.rb
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 5
+      content: "@@ -0,0 +1,5 @@\n+class DashboardController < ApplicationController\n+  def index\n+    render Views::Dashboard::Index.new(\"Sai'd\")\n+  end\n+end"
+      addedLines[5]: class DashboardController < ApplicationController,"  def index","    render Views::Dashboard::Index.new(\"Sai'd\")","  end",end
+      removedLines[0]:
+    - file: app/models/card.rb
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 2
+      content: "@@ -0,0 +1,2 @@\n+class Card < ApplicationRecord\n+end"
+      addedLines[2]: class Card < ApplicationRecord,end
+      removedLines[0]:
+    - file: app/views/base.rb
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 12
+      content: "@@ -0,0 +1,12 @@\n+# frozen_string_literal: true\n+\n+class Views::Base < Components::Base\n+  # The `Views::Base` is an abstract class for all your views.\n+\n+  # By default, it inherits from `Components::Base`, but you\n+  # can change that to `Phlex::HTML` if you want to keep views and\n+  # components independent.\n+\n+  # More caching options at https://www.phlex.fun/components/caching\n+  def cache_store = Rails.cache\n+end"
+      addedLines[12]: "# frozen_string_literal: true","","class Views::Base < Components::Base","  # The `Views::Base` is an abstract class for all your views.","","  # By default, it inherits from `Components::Base`, but you","  # can change that to `Phlex::HTML` if you want to keep views and","  # components independent.","","  # More caching options at https://www.phlex.fun/components/caching","  def cache_store = Rails.cache",end
+      removedLines[0]:
+    - file: app/views/dashboard/index.rb
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 34
+      content: "@@ -0,0 +1,34 @@\n+class Views::Dashboard::Index < Views::Base\n+  def initialize(names)\n+    @names = %w[Sai'd John Jane]\n+  end\n+\n+  def view_template\n+    div(class: \"grid grid-cols-3 gap-6 place-items-center\") do\n+      @names.each do |name|\n+        dashboardCard(name)\n+      end\n+    end\n+  end\n+\n+  private\n+\n+  def dashboardCard(name)\n+    render RubyUI::Card.new(class: \"w-96\") do\n+      render RubyUI::CardHeader.new do\n+        render RubyUI::CardTitle.new { \"Welcome #{name}\" }\n+        render RubyUI::CardDescription.new { \"Kickstart your project today!\" }\n+      end\n+      render RubyUI::CardContent.new do\n+        p(class: \"text-sm text-muted-foreground\") do\n+          \"Build your Rails application with beautiful, reusable components.\"\n+        end\n+      end\n+      render RubyUI::CardFooter.new(class: \"flex justify-end\") do\n+        a(href: \"#\", class: \"inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2\") do\n+          \"Get started\"\n+        end\n+      end\n+    end\n+  end\n+end"
+      addedLines[34]: "class Views::Dashboard::Index < Views::Base","  def initialize(names)","    @names = %w[Sai'd John Jane]","  end","","  def view_template","    div(class: \"grid grid-cols-3 gap-6 place-items-center\") do","      @names.each do |name|","        dashboardCard(name)","      end","    end","  end","","  private","","  def dashboardCard(name)","    render RubyUI::Card.new(class: \"w-96\") do","      render RubyUI::CardHeader.new do","        render RubyUI::CardTitle.new { \"Welcome #{name}\" }","        render RubyUI::CardDescription.new { \"Kickstart your project today!\" }","      end","      render RubyUI::CardContent.new do","        p(class: \"text-sm text-muted-foreground\") do","          \"Build your Rails application with beautiful, reusable components.\"","        end","      end","      render RubyUI::CardFooter.new(class: \"flex justify-end\") do","        a(href: \"#\", class: \"inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2\") do","          \"Get started\"","        end","      end","    end","  end",end
+      removedLines[0]:
+    - file: app/views/layouts/application.html.erb
+      oldStart: 1
+      oldLines: 6
+      newStart: 1
+      newLines: 7
+      content: "@@ -1,6 +1,7 @@\n <!DOCTYPE html>\n <html>\n-  <head>\n+\n+<head>\n     <title><%= content_for(:title) || \"Faz\" %></title>\n     <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n     <meta name=\"apple-mobile-web-app-capable\" content=\"yes\">"
+      addedLines[2]: "",<head>
+      removedLines[1]: "  <head>"
+    - file: app/views/layouts/application.html.erb
+      oldStart: 19
+      oldLines: 11
+      newStart: 20
+      newLines: 34
+      content: "@@ -19,11 +20,34 @@\n     <link rel=\"apple-touch-icon\" href=\"/icon.png\">\n \n     <%# Includes all stylesheet files in app/assets/stylesheets %>\n+    <%= tag.link rel: \"stylesheet\", href: \"/assets/builds/tailwind.css\", \"data-turbo-track\": \"reload\" %>\n     <%= stylesheet_link_tag :app, \"data-turbo-track\": \"reload\" %>\n     <%= javascript_importmap_tags %>\n-  </head>\n+</head>\n+\n+<body>\n+    <%= render RubyUI::Navbar.new(title: \"Hello\") do %>\n+    <%= render RubyUI::NavbarLogo.new(App: \"Faz\") do %>\n+    <h1 class=\"text-xl font-bold\">\n+        Faz\n+    </h1>\n+    <% end %>\n+    <%= render RubyUI::NavbarLinks.new(title: \"Hello\") do%>\n+    <%= render RubyUI::NavbarLink.new(href: \"#\", title: \"Home\") do %>\n+    Home\n+    <% end %>\n+    <%= render RubyUI::NavbarLink.new(href: \"#\", title: \"About\") do %>\n+    About\n+    <% end %>\n+    <%= render RubyUI::NavbarLink.new(href: \"#\", title: \"Contact\") do %>\n+    Contact\n+    <% end %>\n+    <% end %>\n+    <% end %>\n+\n+    <main class=\"pt-24 px-4 mx-auto\">\n+        <%= yield %>\n+    </main>\n+</body>\n \n-  <body>\n-    <%= yield %>\n-  </body>\n-</html>\n+</html>"
+      addedLines[28]: "    <%= tag.link rel: \"stylesheet\", href: \"/assets/builds/tailwind.css\", \"data-turbo-track\": \"reload\" %>",</head>,"",<body>,"    <%= render RubyUI::Navbar.new(title: \"Hello\") do %>","    <%= render RubyUI::NavbarLogo.new(App: \"Faz\") do %>","    <h1 class=\"text-xl font-bold\">","        Faz","    </h1>","    <% end %>","    <%= render RubyUI::NavbarLinks.new(title: \"Hello\") do%>","    <%= render RubyUI::NavbarLink.new(href: \"#\", title: \"Home\") do %>","    Home","    <% end %>","    <%= render RubyUI::NavbarLink.new(href: \"#\", title: \"About\") do %>","    About","    <% end %>","    <%= render RubyUI::NavbarLink.new(href: \"#\", title: \"Contact\") do %>","    Contact","    <% end %>","    <% end %>","    <% end %>","","    <main class=\"pt-24 px-4 mx-auto\">","        <%= yield %>","    </main>",</body>,</html>
+      removedLines[5]: "  </head>","  <body>","    <%= yield %>","  </body>",</html>
+    - file: bin/dev
+      oldStart: 1
+      oldLines: 2
+      newStart: 1
+      newLines: 16
+      content: "@@ -1,2 +1,16 @@\n-#!/usr/bin/env ruby\n-exec \"./bin/rails\", \"server\", *ARGV\n+#!/usr/bin/env sh\n+\n+if ! gem list foreman -i --silent; then\n+  echo \"Installing foreman...\"\n+  gem install foreman\n+fi\n+\n+# Default to port 3000 if not specified\n+export PORT=\"${PORT:-3000}\"\n+\n+# Let the debug gem allow remote connections,\n+# but avoid loading until `debugger` is called\n+export RUBY_DEBUG_OPEN=\"true\"\n+export RUBY_DEBUG_LAZY=\"true\"\n+\n+exec foreman start -f Procfile.dev \"$@\""
+      addedLines[16]: #!/usr/bin/env sh,"",if ! gem list foreman -i --silent; then,"  echo \"Installing foreman...\"","  gem install foreman",fi,"",# Default to port 3000 if not specified,"export PORT=\"${PORT:-3000}\"","","# Let the debug gem allow remote connections,",# but avoid loading until `debugger` is called,"export RUBY_DEBUG_OPEN=\"true\"","export RUBY_DEBUG_LAZY=\"true\"","","exec foreman start -f Procfile.dev \"$@\""
+      removedLines[2]: #!/usr/bin/env ruby,"exec \"./bin/rails\", \"server\", *ARGV"
+    - file: config/application.rb
+      oldStart: 16
+      oldLines: 6
+      newStart: 16
+      newLines: 9
+      content: "@@ -16,6 +16,9 @@ module Faz\n     # Common ones are `templates`, `generators`, or `middleware`, for example.\n     config.autoload_lib(ignore: %w[assets tasks])\n \n+    # Add the builds directory to Propshaft's asset load path for Tailwind CSS\n+    config.assets.paths << Rails.root.join(\"app/assets/builds\")\n+\n     # Configuration for the application, engines, and railties goes here.\n     #\n     # These settings can be overridden in specific environments using the files"
+      addedLines[3]: "    # Add the builds directory to Propshaft's asset load path for Tailwind CSS","    config.assets.paths << Rails.root.join(\"app/assets/builds\")",""
+      removedLines[0]:
+    - file: config/database.yml
+      oldStart: 5
+      oldLines: 36
+      newStart: 5
+      newLines: 26
+      content: "@@ -5,36 +5,26 @@\n #   gem \"sqlite3\"\n #\n default: &default\n-  adapter: sqlite3\n+  adapter: postgresql\n+  encoding: unicode\n+  database: faz_development\n+  pool: <%= ENV.fetch(\"RAILS_MAX_THREADS\") { 5 } %>\n+  username: saidzain\n+  password: password123\n+  host: localhost\n   max_connections: <%= ENV.fetch(\"RAILS_MAX_THREADS\") { 5 } %>\n-  timeout: 5000\n+  timeout: 5000a\n \n development:\n   <<: *default\n-  database: storage/development.sqlite3\n \n # Warning: The database defined as \"test\" will be erased and\n # re-generated from your development database when you run \"rake\".\n # Do not set this db to the same as development or production.\n test:\n   <<: *default\n-  database: storage/test.sqlite3\n \n # Store production database in the storage/ directory, which by default\n # is mounted as a persistent Docker volume in config/deploy.yml.\n production:\n-  primary:\n-    <<: *default\n-    database: storage/production.sqlite3\n-  cache:\n-    <<: *default\n-    database: storage/production_cache.sqlite3\n-    migrations_paths: db/cache_migrate\n-  queue:\n-    <<: *default\n-    database: storage/production_queue.sqlite3\n-    migrations_paths: db/queue_migrate\n-  cable:\n-    <<: *default\n-    database: storage/production_cable.sqlite3\n-    migrations_paths: db/cable_migrate\n+  <<: *default"
+      addedLines[9]: "  adapter: postgresql","  encoding: unicode","  database: faz_development","  pool: <%= ENV.fetch(\"RAILS_MAX_THREADS\") { 5 } %>","  username: saidzain","  password: password123","  host: localhost","  timeout: 5000a","  <<: *default"
+      removedLines[19]: "  adapter: sqlite3","  timeout: 5000","  database: storage/development.sqlite3","  database: storage/test.sqlite3","  primary:","    <<: *default","    database: storage/production.sqlite3","  cache:","    <<: *default","    database: storage/production_cache.sqlite3","    migrations_paths: db/cache_migrate","  queue:","    <<: *default","    database: storage/production_queue.sqlite3","    migrations_paths: db/queue_migrate","  cable:","    <<: *default","    database: storage/production_cable.sqlite3","    migrations_paths: db/cable_migrate"
+    - file: config/initializers/phlex.rb
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 16
+      content: "@@ -0,0 +1,16 @@\n+# frozen_string_literal: true\n+\n+module Views\n+end\n+\n+module Components\n+  extend Phlex::Kit\n+end\n+\n+Rails.autoloaders.main.push_dir(\n+  Rails.root.join(\"app/views\"), namespace: Views\n+)\n+\n+Rails.autoloaders.main.push_dir(\n+  Rails.root.join(\"app/components\"), namespace: Components\n+)"
+      addedLines[16]: "# frozen_string_literal: true","",module Views,end,"",module Components,"  extend Phlex::Kit",end,"",Rails.autoloaders.main.push_dir(,"  Rails.root.join(\"app/views\"), namespace: Views",),"",Rails.autoloaders.main.push_dir(,"  Rails.root.join(\"app/components\"), namespace: Components",)
+      removedLines[0]:
+    - file: config/initializers/ruby_ui.rb
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 18
+      content: "@@ -0,0 +1,18 @@\n+# frozen_string_literal: true\n+\n+module RubyUI\n+  extend Phlex::Kit\n+end\n+\n+# Allow using RubyUI instead RubyUi\n+Rails.autoloaders.main.inflector.inflect(\n+  \"ruby_ui\" => \"RubyUI\"\n+)\n+\n+# Allow using RubyUI::ComponentName instead Components::RubyUI::ComponentName\n+Rails.autoloaders.main.push_dir(\n+  Rails.root.join(\"app/components/ruby_ui\"), namespace: RubyUI\n+)\n+\n+# Allow using RubyUI::ComponentName instead RubyUI::ComponentName::ComponentName\n+Rails.autoloaders.main.collapse(Rails.root.join(\"app/components/ruby_ui/*\"))"
+      addedLines[18]: "# frozen_string_literal: true","",module RubyUI,"  extend Phlex::Kit",end,"",# Allow using RubyUI instead RubyUi,Rails.autoloaders.main.inflector.inflect(,"  \"ruby_ui\" => \"RubyUI\"",),"","# Allow using RubyUI::ComponentName instead Components::RubyUI::ComponentName",Rails.autoloaders.main.push_dir(,"  Rails.root.join(\"app/components/ruby_ui\"), namespace: RubyUI",),"","# Allow using RubyUI::ComponentName instead RubyUI::ComponentName::ComponentName","Rails.autoloaders.main.collapse(Rails.root.join(\"app/components/ruby_ui/*\"))"
+      removedLines[0]:
+    - file: config/routes.rb
+      oldStart: 1
+      oldLines: 14
+      newStart: 1
+      newLines: 4
+      content: "@@ -1,14 +1,4 @@\n Rails.application.routes.draw do\n-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html\n-\n-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.\n-  # Can be used by load balancers and uptime monitors to verify that the app is live.\n   get \"up\" => \"rails/health#show\", as: :rails_health_check\n-\n-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)\n-  # get \"manifest\" => \"rails/pwa#manifest\", as: :pwa_manifest\n-  # get \"service-worker\" => \"rails/pwa#service_worker\", as: :pwa_service_worker\n-\n-  # Defines the root path route (\"/\")\n-  # root \"posts#index\"\n+  get \"/\", to: \"dashboard#index\"\n end"
+      addedLines[1]: "  get \"/\", to: \"dashboard#index\""
+      removedLines[11]: "  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html","","  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.","  # Can be used by load balancers and uptime monitors to verify that the app is live.","","  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)","  # get \"manifest\" => \"rails/pwa#manifest\", as: :pwa_manifest","  # get \"service-worker\" => \"rails/pwa#service_worker\", as: :pwa_service_worker","","  # Defines the root path route (\"/\")","  # root \"posts#index\""
+    - file: db/migrate/20260131162104_create_cards.rb
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 9
+      content: "@@ -0,0 +1,9 @@\n+class CreateCards < ActiveRecord::Migration[8.1]\n+  def change\n+    create_table :cards do |t|\n+      t.string :name\n+\n+      t.timestamps\n+    end\n+  end\n+end"
+      addedLines[9]: "class CreateCards < ActiveRecord::Migration[8.1]","  def change","    create_table :cards do |t|","      t.string :name","","      t.timestamps","    end","  end",end
+      removedLines[0]:
+    - file: db/schema.rb
+      oldStart: 0
+      oldLines: 0
+      newStart: 1
+      newLines: 22
+      content: "@@ -0,0 +1,22 @@\n+# This file is auto-generated from the current state of the database. Instead\n+# of editing this file, please use the migrations feature of Active Record to\n+# incrementally modify your database, and then regenerate this schema definition.\n+#\n+# This file is the source Rails uses to define your schema when running `bin/rails\n+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to\n+# be faster and is potentially less error prone than running all of your\n+# migrations from scratch. Old migrations may fail to apply correctly if those\n+# migrations use external dependencies or application code.\n+#\n+# It's strongly recommended that you check this file into your version control system.\n+\n+ActiveRecord::Schema[8.1].define(version: 2026_01_31_162104) do\n+  # These are extensions that must be enabled in order to support this database\n+  enable_extension \"pg_catalog.plpgsql\"\n+\n+  create_table \"cards\", force: :cascade do |t|\n+    t.datetime \"created_at\", null: false\n+    t.string \"name\"\n+    t.datetime \"updated_at\", null: false\n+  end\n+end"
+      addedLines[22]: # This file is auto-generated from the current state of the database. Instead,"# of editing this file, please use the migrations feature of Active Record to","# incrementally modify your database, and then regenerate this schema definition.",#,# This file is the source Rails uses to define your schema when running `bin/rails,"# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to",# be faster and is potentially less error prone than running all of your,# migrations from scratch. Old migrations may fail to apply correctly if those,# migrations use external dependencies or application code.,#,# It's strongly recommended that you check this file into your version control system.,"","ActiveRecord::Schema[8.1].define(version: 2026_01_31_162104) do","  # These are extensions that must be enabled in order to support this database","  enable_extension \"pg_catalog.plpgsql\"","","  create_table \"cards\", force: :cascade do |t|","    t.datetime \"created_at\", null: false","    t.string \"name\"","    t.datetime \"updated_at\", null: false","  end",end
+      removedLines[0]:
+  stats:
+    totalInsertions: 652
+    totalDeletions: 44
+    filesChanged: 33
+    commitsCount: 12
+intent:
+  primaryTheme: "Feature Addition: card, rubyui"
+  keywords[4]: add,create,new,support
+  confidence: medium
+  commitGroups[3]:
+    - theme: Feature Addition
+      commits[9]: 208dd86,de08ddd,a3effe9,3148ecf,5df9954,39beb66,7f2b5ae,e51d179,6afefd4
+    - theme: UI/UX
+      commits[2]: 2f8f33b,5b5c0bb
+    - theme: Bug Fix
+      commits[1]: ca6d9a6
+generatedAt: "2026-01-31T16:37:54.171Z"
